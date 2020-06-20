@@ -5100,6 +5100,14 @@
       "transactionHash": "0xd66f2e74ad65c06b07e166f1e18d55155af582e8eeab028e0079979c9c184747"
     }
   },
+  "private": {
+    "38240": {
+      "events": {},
+      "links": {},
+      "address": "0x533CF5c6bE76Bb4b6FB965abd0578bf31645C9BE",
+      "transactionHash": "0xe20d77b42cea7b2b0c2cd142bfcbc73c429f6d934bada36221f56ec239c232a5"
+    }
+  },
   "schemaVersion": "3.0.23",
   "updatedAt": "2020-06-20T07:58:28.850Z",
   "devdoc": {

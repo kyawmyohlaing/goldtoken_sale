@@ -34,11 +34,11 @@ const w = new WalletProvider(privKey, "https://ropsten.infura.io/MY_INFURA_KEY")
 web3 = new Web3(w.engine)
 
 */
-/*const Web3 = require('web3');
+//const Web3 = require('web3');
 const HDWalletProvider = require("truffle-hdwallet-provider-privkey");
 
 const privateKeys = "7A675BFC46651334EDC56FFC9AAA1D958A81C2E16B1335AF8A2C3AAE20B32D8E"; // private keys
-*/
+
 module.exports = {
   /**
    * Networks define how you connect to your ethereum client and let you set the
@@ -54,13 +54,14 @@ module.exports = {
   //7A675BFC46651334EDC56FFC9AAA1D958A81C2E16B1335AF8A2C3AAE20B32D8E
 
 
-  private: {
+ /* private: {
     provider: () => new HDWalletProvider( privateKeys, `http://165.22.32.19:8000`),
     port: 8000,
     network_id: "38240",
     from: "0x15C1B38C9dd24971ea27912290bdC2deB0dC9484", 
     production: true
   },
+*/
 
   networks: {
     // Useful for testing. The `development` name is special - truffle uses it by default
@@ -95,7 +96,12 @@ module.exports = {
       // timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
       // skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
     // },
-
+    private: {
+      provider: () => {
+        return new HDWalletProvider(privateKeys, "http://165.22.32.19:8000")
+      },
+      network_id: 38240
+    }
     // Useful for private networks
     // private: {
       // provider: () => new HDWalletProvider(mnemonic, `https://network.io`),
