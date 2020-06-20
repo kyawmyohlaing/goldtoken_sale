@@ -1,0 +1,17 @@
+{
+  "name": "gold-token-sale",
+  "version": "1.0.0",
+  "description": "gold Token Sale ICO",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "dev": "lite-server"
+  },
+  "author": "Kyaw Myo Hlaing",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.3.0"
+  }
+}
