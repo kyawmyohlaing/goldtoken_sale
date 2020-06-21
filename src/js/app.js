@@ -19,25 +19,25 @@ App = {
         web3 = new Web3(web3.currentProvider);
       } else {
         // Specify default instance if no web3 instance provided
-        App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
+        App.web3Provider = new Web3.providers.HttpProvider('http://165.22.32.19:8000');
         web3 = new Web3(App.web3Provider);
       }
       return App.initContracts();
     },
   
     initContracts: function() {
-      $.getJSON("DappTokenSale.json", function(dappTokenSale) {
-        App.contracts.DappTokenSale = TruffleContract(dappTokenSale);
-        App.contracts.DappTokenSale.setProvider(App.web3Provider);
-        App.contracts.DappTokenSale.deployed().then(function(dappTokenSale) {
-          console.log("Dapp Token Sale Address:", dappTokenSale.address);
+      $.getJSON("GoldTokenSale.json", function(dappTokenSale) {
+        App.contracts.GoldTokenSale = TruffleContract(dappTokenSale);
+        App.contracts.GoldTokenSale.setProvider(App.web3Provider);
+        App.contracts.GoldTokenSale.deployed().then(function(dappTokenSale) {
+          console.log("Gold Token Sale Address:", dappTokenSale.address);
         });
       }).done(function() {
-        $.getJSON("DappToken.json", function(dappToken) {
-          App.contracts.DappToken = TruffleContract(dappToken);
-          App.contracts.DappToken.setProvider(App.web3Provider);
-          App.contracts.DappToken.deployed().then(function(dappToken) {
-            console.log("Dapp Token Address:", dappToken.address);
+        $.getJSON("GoldToken.json", function(dappToken) {
+          App.contracts.GoldToken = TruffleContract(dappToken);
+          App.contracts.GoldToken.setProvider(App.web3Provider);
+          App.contracts.GoldToken.deployed().then(function(dappToken) {
+            console.log("Gold Token Address:", dappToken.address);
           });
   
           App.listenForEvents();
@@ -48,7 +48,7 @@ App = {
   
     // Listen for events emitted from the contract
     listenForEvents: function() {
-      App.contracts.DappTokenSale.deployed().then(function(instance) {
+      App.contracts.GoldTokenSale.deployed().then(function(instance) {
         instance.Sell({}, {
           fromBlock: 0,
           toBlock: 'latest',
@@ -80,7 +80,7 @@ App = {
       })
   
       // Load token sale contract
-      App.contracts.DappTokenSale.deployed().then(function(instance) {
+      App.contracts.GoldTokenSale.deployed().then(function(instance) {
         dappTokenSaleInstance = instance;
         return dappTokenSaleInstance.tokenPrice();
       }).then(function(tokenPrice) {
@@ -96,7 +96,7 @@ App = {
         $('#progress').css('width', progressPercent + '%');
   
         // Load token contract
-        App.contracts.DappToken.deployed().then(function(instance) {
+        App.contracts.GoldToken.deployed().then(function(instance) {
           dappTokenInstance = instance;
           return dappTokenInstance.balanceOf(App.account);
         }).then(function(balance) {
@@ -112,7 +112,7 @@ App = {
       $('#content').hide();
       $('#loader').show();
       var numberOfTokens = $('#numberOfTokens').val();
-      App.contracts.DappTokenSale.deployed().then(function(instance) {
+      App.contracts.GoldTokenSale.deployed().then(function(instance) {
         return instance.buyTokens(numberOfTokens, {
           from: App.account,
           value: numberOfTokens * App.tokenPrice,
