@@ -36,8 +36,9 @@ web3 = new Web3(w.engine)
 */
 //const Web3 = require('web3');
 const HDWalletProvider = require("truffle-hdwallet-provider-privkey");
+//const privateKeys = Buffer.from('7A675BFC46651334EDC56FFC9AAA1D958A81C2E16B1335AF8A2C3AAE20B32D8E', 'hex');
 
-const privateKeys = "7A675BFC46651334EDC56FFC9AAA1D958A81C2E16B1335AF8A2C3AAE20B32D8E"; // private keys
+const privateKeys = ["7A675BFC46651334EDC56FFC9AAA1D958A81C2E16B1335AF8A2C3AAE20B32D8E"]; // private keys
 
 module.exports = {
   /**
@@ -100,7 +101,9 @@ module.exports = {
       provider: () => {
         return new HDWalletProvider(privateKeys, "http://165.22.32.19:8000")
       },
-      network_id: 38240
+      network_id: 38240,
+      gas: 4500000,
+      gasPrice: 100000000
     }
     // Useful for private networks
     // private: {

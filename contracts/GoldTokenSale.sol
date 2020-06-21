@@ -2,7 +2,7 @@ pragma solidity >=0.4.2;
 
 import "./GoldToken.sol";
 
-contract DappTokenSale {
+contract GoldTokenSale {
     address payable admin;
     GoldToken public tokenContract;
     uint256 public tokenPrice;
@@ -10,7 +10,7 @@ contract DappTokenSale {
 
     event Sell(address _buyer, uint256 _amount);
 
-    function GoldTokenSale(GoldToken _tokenContract, uint256 _tokenPrice) public {
+    constructor (GoldToken _tokenContract, uint256 _tokenPrice) public {
         admin = msg.sender;
         tokenContract = _tokenContract;
         tokenPrice = _tokenPrice;
